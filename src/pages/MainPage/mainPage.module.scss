@@ -1,0 +1,15 @@
+@use 'styles/constants/colors' as color;
+
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: color.$PRIMARY;
+
+  & .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    letter-spacing: -0.018rem;
+  }
+}
