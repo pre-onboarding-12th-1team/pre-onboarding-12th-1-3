@@ -1,0 +1,116 @@
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable value-keyword-case */
+$WHITE: #fdfdfd;
+$PURE_WHITE: #ffffff;
+$BLACK: #0e1111;
+
+$GRAY1: #f8f9fa;
+$GRAY2: #f1f3f5;
+$GRAY3: #e9ecef;
+$GRAY4: #dee2e6;
+$GRAY5: #ced4da;
+$GRAY6: #adb5bd;
+
+$RED1: #ffa8a8;
+$RED2: #ff6b6b;
+$RED3: #fa5252;
+$RED4: #f03e3e;
+$RED5: #e03131;
+$RED6: #c92a2a;
+
+$INDIGO1: #bac8ff;
+$INDIGO2: #748ffc;
+$INDIGO3: #4c6ef5;
+$INDIGO4: #4263eb;
+$INDIGO5: #3b5bdb;
+$INDIGO6: #364fc7;
+
+$BLUE1: #e7f5ff;
+$BLUE2: #d0ebff;
+$BLUE3: #a5d8ff;
+$BLUE4: #4dabf7;
+$BLUE5: #339af0;
+$BLUE6: #1c7ed6;
+
+$TEAL1: #e6fcf5;
+$TEAL2: #96f2d7;
+$TEAL3: #63e6be;
+$TEAL4: #38d9a9;
+$TEAL5: #20c997;
+$TEAL6: #12b886;
+
+$GREEN1: #ebfbee;
+$GREEN2: #d3f9d8;
+$GREEN3: #8ce99a;
+$GREEN4: #69db7c;
+$GREEN5: #51cf66;
+$GREEN6: #40c057;
+
+$YELLOW1: #fff9db;
+$YELLOW2: #ffec99;
+$YELLOW3: #ffe066;
+$YELLOW4: #fcc419;
+$YELLOW5: #fab005;
+$YELLOW6: #f59f00;
+
+$ORANGE1: #fff4e6;
+$ORANGE2: #ffd8a8;
+$ORANGE3: #ffa94d;
+$ORANGE4: #ff922b;
+$ORANGE5: #fd7e14;
+$ORANGE6: #f76707;
+
+:export {
+  white: WHITE;
+  pureWhite: $PURE_WHITE;
+  black: $BLACK;
+  gray1: GRAY1;
+  gray2: GRAY2;
+  gray3: GRAY3;
+  gray4: GRAY4;
+  gray5: GRAY5;
+  gray6: GRAY6;
+  red1: RED1;
+  red2: RED2;
+  red3: RED3;
+  red4: RED4;
+  red5: RED5;
+  red6: RED6;
+  indigo1: INDIGO1;
+  indigo2: INDIGO2;
+  indigo3: INDIGO3;
+  indigo4: INDIGO4;
+  indigo5: INDIGO5;
+  indigo6: INDIGO6;
+  blue1: BLUE1;
+  blue2: BLUE2;
+  blue3: BLUE3;
+  blue4: BLUE4;
+  blue5: BLUE5;
+  blue6: BLUE6;
+  teal1: TEAL1;
+  teal2: TEAL2;
+  teal3: TEAL3;
+  teal4: TEAL4;
+  teal5: TEAL5;
+  teal6: TEAL6;
+  green1: GREEN1;
+  green2: GREEN2;
+  green3: GREEN3;
+  green4: GREEN4;
+  green5: GREEN5;
+  green6: GREEN6;
+  yellow1: YELLOW1;
+  yellow2: YELLOW2;
+  yellow3: YELLOW3;
+  yellow4: YELLOW4;
+  yellow5: YELLOW5;
+  yellow6: YELLOW6;
+  orange1: ORANGE1;
+  orange2: ORANGE2;
+  orange3: ORANGE3;
+  orange4: ORANGE4;
+  orange5: ORANGE5;
+  orange6: ORANGE6;
+}
