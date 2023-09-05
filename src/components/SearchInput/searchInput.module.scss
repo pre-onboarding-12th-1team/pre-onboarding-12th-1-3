@@ -1,0 +1,28 @@
+@use 'styles/constants/colors' as color;
+
+.searchInput {
+  width: 490px;
+  height: 73px;
+  padding: 12px 60px 12px 20px;
+  caret-color: color.$BLUE6;
+  background-color: color.$WHITE;
+  border-radius: 42px;
+  box-shadow: 0 2px 4px rgba(30, 32, 37, 10%);
+
+  &::placeholder {
+    padding-left: 30px;
+    font-size: 16px;
+    color: color.$GRAY6;
+    background-image: url('src/assets/svgs/magnifyingGlass.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+  }
+
+  &:focus {
+    &::placeholder {
+      background-image: none;
+      opacity: 0;
+    }
+    border: 2px solid color.$BLUE6;
+  }
+}
