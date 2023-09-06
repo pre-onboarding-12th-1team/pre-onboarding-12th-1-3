@@ -32,15 +32,12 @@ const SearchRecommendation = () => {
     return () => window.removeEventListener('keydown', handleSelectItem)
   }, [sicks.length])
 
-  console.log('itemIndex', itemIndex)
-
   return (
     <ul className={cx('recommendation')}>
       {input.length !== 0 && <List selected={itemIndex === START_INDEX} sick={input} />}
       <p>추천 검색어</p>
       {sicks.map((sick, index) => {
         const key = `${index}-${sick.sickNm}`
-        if (index === itemIndex) console.log(index, sick.sickNm)
         return (
           <List
             key={key}
