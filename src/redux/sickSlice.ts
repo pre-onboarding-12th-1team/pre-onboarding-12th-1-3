@@ -11,11 +11,6 @@ const initialState: SickState = {
   input: '',
 }
 
-// export const fetchSicks = createAsyncThunk<SickResponseData>(
-//   'sick/fetchSicks',
-//   async ({ getState }) => {},
-// )
-
 const sickSlice = createSlice({
   name: 'sick',
   initialState,
