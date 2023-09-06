@@ -41,7 +41,14 @@ const SearchRecommendation = () => {
       {sicks.map((sick, index) => {
         const key = `${index}-${sick.sickNm}`
         if (index === itemIndex) console.log(index, sick.sickNm)
-        return <List key={key} selected={index === itemIndex} sick={sick.sickNm} />
+        return (
+          <List
+            key={key}
+            keyword={input}
+            selected={index === itemIndex}
+            sick={sick.sickNm}
+          />
+        )
       })}
     </ul>
   )
