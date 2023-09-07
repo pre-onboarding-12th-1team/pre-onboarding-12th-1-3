@@ -37,20 +37,22 @@ const SearchRecommendation = () => {
   }, [dispatch, input, itemIndex, sicks, sicks.length])
 
   return (
-    <ul className={cx('recommendation')}>
-      <p>추천 검색어</p>
-      {sicks.map((sick, index) => {
-        const key = `${index}-${sick.sickNm}`
-        return (
-          <List
-            key={key}
-            keyword={input}
-            selected={index === itemIndex}
-            sick={sick.sickNm}
-          />
-        )
-      })}
-    </ul>
+    <div className={cx('recommendationBox')}>
+      <p className={cx('recommendationTitle')}>추천 검색어</p>
+      <ul>
+        {sicks.map((sick, index) => {
+          const key = `${index}-${sick.sickNm}`
+          return (
+            <List
+              key={key}
+              keyword={input}
+              selected={index === itemIndex}
+              sick={sick.sickNm}
+            />
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 
