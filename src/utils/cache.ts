@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 const CACHE_NAME = 'sicks'
 
 // 캐시타임 기본 20초
-const EXPIRE_TIME = 200000
+const EXPIRE_TIME = 20 * 1000
 
 export const setCache = async (
   request: RequestInfo | URL,
