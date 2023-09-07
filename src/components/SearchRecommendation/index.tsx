@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind'
 import List from 'components/List'
 import { useEffect, useState } from 'react'
-import { useAppSelector } from 'redux/hooks'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { selectSick } from 'redux/sickSlice'
 
 import styles from './searchRecommendation.module.scss'
 
@@ -11,6 +12,7 @@ const START_INDEX = -1
 
 const SearchRecommendation = () => {
   const { sicks, input } = useAppSelector((state) => state.sicks)
+  const dispatch = useAppDispatch()
   const [itemIndex, setItemIndex] = useState(START_INDEX)
 
   useEffect(() => {
@@ -20,21 +22,22 @@ const SearchRecommendation = () => {
   useEffect(() => {
     const handleSelectItem = (e: KeyboardEvent) => {
       if (e.isComposing) return
-      setItemIndex((index) => {
-        if (e.key === 'ArrowDown' && index < sicks.length - 1) {
-          return index + 1
-        } else if (e.key === 'ArrowUp' && index > START_INDEX) return index - 1
-        return index
-      })
+
+      if (e.key === 'ArrowDown' && itemIndex < sicks.length - 1) {
+        setItemIndex(itemIndex + 1)
+        dispatch(selectSick(sicks[itemIndex + 1].sickNm))
+      } else if (e.key === 'ArrowUp' && itemIndex > START_INDEX) {
+        setItemIndex(itemIndex - 1)
+        dispatch(selectSick(sicks[itemIndex - 1]?.sickNm || input))
+      }
     }
     window.addEventListener('keydown', handleSelectItem)
 
     return () => window.removeEventListener('keydown', handleSelectItem)
-  }, [sicks.length])
+  }, [dispatch, input, itemIndex, sicks, sicks.length])
 
   return (
     <ul className={cx('recommendation')}>
-      {input.length !== 0 && <List selected={itemIndex === START_INDEX} sick={input} />}
       <p>추천 검색어</p>
       {sicks.map((sick, index) => {
         const key = `${index}-${sick.sickNm}`
