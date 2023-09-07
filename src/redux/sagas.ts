@@ -13,13 +13,9 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
     )
     if (!cachedData) {
       const response: AxiosResponse<SickResponseData> = yield sick.getSick(action.payload)
+      console.log('api called!')
       if (response.config.url) {
-        const myResponse = new Response(JSON.stringify(response.data), {
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-          },
-        })
-        setCache(response.config.url, myResponse)
+        setCache(response.config.url, response)
       }
       yield put(setSick(response.data))
     } else {
@@ -31,7 +27,7 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
 }
 
 function* watchChangeInput() {
-  yield debounce(500, changeInput.type, fetchData)
+  yield debounce(1000, changeInput.type, fetchData)
 }
 
 export default function* rootSaga() {
