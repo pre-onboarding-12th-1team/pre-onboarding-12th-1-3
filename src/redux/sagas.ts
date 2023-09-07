@@ -7,6 +7,10 @@ import { getCache, setCache } from 'utils/cache'
 import { changeInput, setSick } from './sickSlice'
 
 function* fetchData(action: ReturnType<typeof changeInput>) {
+  if (action.payload.length === 0) {
+    yield put(setSick([]))
+    return
+  }
   try {
     const cachedData: SickResponseData | undefined = yield getCache(
       `/sick?q=${action.payload}`,
@@ -31,7 +35,7 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
 }
 
 function* watchChangeInput() {
-  yield debounce(100, changeInput.type, fetchData)
+  yield debounce(500, changeInput.type, fetchData)
 }
 
 export default function* rootSaga() {
