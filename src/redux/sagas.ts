@@ -13,7 +13,7 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
     )
     if (!cachedData) {
       const response: AxiosResponse<SickResponseData> = yield sick.getSick(action.payload)
-      console.log('api called!')
+      console.info('calling api')
       if (response.config.url) {
         setCache(response.config.url, response)
       }
