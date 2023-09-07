@@ -33,7 +33,7 @@ export const getCache = async (request: RequestInfo | URL) => {
 
   if (dueTime - nowTime < 0) {
     await cache.delete(request)
-    console.log('cache deleted')
+    console.info('cache deleted')
     return
   }
 
