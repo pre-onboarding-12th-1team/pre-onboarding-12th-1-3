@@ -1,13 +1,27 @@
 @use 'styles/constants/colors' as color;
 
-.recommendation {
+.recommendationBox {
   position: absolute;
   top: 80px;
   left: 50%;
   width: 490px;
-  padding: 20px;
+  max-height: 250px;
   background-color: color.$WHITE;
   border-radius: 18px;
   box-shadow: 0 2px 4px rgba(30, 32, 37, 10%);
   transform: translateX(-50%);
+  overflow: auto;
+
+  & .recommendationTitle {
+    padding: 5px 15px;
+  }
+
+  & .recommendationUl {
+    padding: 4px 0px;
+  }
+
+  & .resultEmpty {
+    text-align: center;
+    padding: 20px 0px;
+  }
 }
