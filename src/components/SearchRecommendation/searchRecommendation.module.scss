@@ -11,8 +11,17 @@
   box-shadow: 0 2px 4px rgba(30, 32, 37, 10%);
   transform: translateX(-50%);
   overflow: auto;
-}
 
-.recommendationTitle {
-  padding: 5px 15px;
+  & .recommendationTitle {
+    padding: 5px 15px;
+  }
+
+  & .recommendationUl {
+    padding: 4px 0px;
+  }
+
+  & .resultEmpty {
+    text-align: center;
+    padding: 20px 0px;
+  }
 }
