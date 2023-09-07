@@ -4,11 +4,13 @@ import { SickResponseData } from 'types/sick'
 interface SickState {
   sicks: SickResponseData
   input: string
+  selectedSick: string
 }
 
 const initialState: SickState = {
   sicks: [],
   input: '',
+  selectedSick: '',
 }
 
 const sickSlice = createSlice({
@@ -21,9 +23,12 @@ const sickSlice = createSlice({
     setSick(state, action: PayloadAction<SickResponseData>) {
       state.sicks = action.payload
     },
+    selectSick(state, action: PayloadAction<string>) {
+      state.selectedSick = action.payload
+    },
   },
 })
 
-export const { changeInput, setSick } = sickSlice.actions
+export const { changeInput, setSick, selectSick } = sickSlice.actions
 
 export default sickSlice.reducer
