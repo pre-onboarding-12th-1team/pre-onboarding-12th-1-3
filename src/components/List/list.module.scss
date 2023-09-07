@@ -2,7 +2,6 @@
 
 .sickList {
   display: flex;
-  gap: 10px;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
@@ -11,6 +10,9 @@
   & mark {
     font-weight: 700;
     background-color: transparent;
+  }
+  & :first-child {
+    margin-right: 10px;
   }
 }
 
