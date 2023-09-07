@@ -5,13 +5,10 @@ import SearchRecommendation from 'components/SearchRecommendation'
 import { FormEvent, useState } from 'react'
 
 import styles from './searchBar.module.scss'
-// import { useAppSelector } from 'redux/hooks'
 
 const cx = classNames.bind(styles)
 
 const SearchBar = () => {
-  // const { input } = useAppSelector((state) => state.sicks)
-
   const [isFocused, setIsFocused] = useState(false)
 
   const startSearch = (e: FormEvent<HTMLFormElement>) => {
