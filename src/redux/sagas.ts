@@ -31,7 +31,7 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
 }
 
 function* watchChangeInput() {
-  yield debounce(500, changeInput.type, fetchData)
+  yield debounce(100, changeInput.type, fetchData)
 }
 
 export default function* rootSaga() {
