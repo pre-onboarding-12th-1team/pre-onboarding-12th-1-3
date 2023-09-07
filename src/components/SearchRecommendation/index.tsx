@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import List from 'components/List'
+import useKeyEvent from 'hooks/useKeyEvent'
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { changeInput, selectSick } from 'redux/sickSlice'
@@ -29,31 +30,26 @@ const SearchRecommendation = () => {
     setItemIndex(START_INDEX)
   }, [input])
 
-  useEffect(() => {
-    const handleSelectItem = (e: KeyboardEvent) => {
-      if (e.isComposing) return
-      if (sicks.length === 0) return
+  useKeyEvent((e: KeyboardEvent) => {
+    if (e.isComposing) return
+    if (sicks.length === 0) return
 
-      switch (e.key) {
-        case 'ArrowDown':
-          if (itemIndex >= sicks.length - 1) {
-            setItemIndex(START_INDEX + 1)
-            dispatch(selectSick(sicks[START_INDEX + 1].sickNm))
-            return
-          }
-          setItemIndex(itemIndex + 1)
-          dispatch(selectSick(sicks[itemIndex + 1].sickNm))
-          break
-        case 'ArrowUp':
-          if (itemIndex < 0) return setItemIndex(sicks.length - 1)
-          setItemIndex(itemIndex - 1)
-          dispatch(selectSick(sicks[itemIndex - 1]?.sickNm || input))
-      }
+    switch (e.key) {
+      case 'ArrowDown':
+        if (itemIndex >= sicks.length - 1) {
+          setItemIndex(START_INDEX + 1)
+          dispatch(selectSick(sicks[START_INDEX + 1].sickNm))
+          return
+        }
+        setItemIndex(itemIndex + 1)
+        dispatch(selectSick(sicks[itemIndex + 1].sickNm))
+        break
+      case 'ArrowUp':
+        if (itemIndex < 0) return setItemIndex(sicks.length - 1)
+        setItemIndex(itemIndex - 1)
+        dispatch(selectSick(sicks[itemIndex - 1]?.sickNm || input))
     }
-    window.addEventListener('keydown', handleSelectItem)
-
-    return () => window.removeEventListener('keydown', handleSelectItem)
-  }, [dispatch, input, itemIndex, sicks, sicks.length])
+  })
 
   const handleClickList: MouseEventHandler<HTMLButtonElement> = (e) => {
     dispatch(changeInput(e.currentTarget.value))
