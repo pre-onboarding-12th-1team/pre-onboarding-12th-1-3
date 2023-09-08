@@ -1,10 +1,11 @@
 [한국임상정보 사이트](https://clinicaltrialskorea.com/)의 검색영역을 클론한 검색창
 
-[배포링크]()
+[배포링크](https://pre-onboarding-12th-1-3-beta.vercel.app/)
 
 ## 목차
 1. [팀원 소개](#팀원-소개)
 2. [실행 방법](#실행방법)
+3. [기술 스택 및 사용한 라이브러리](#기술-스택-및-사용한-라이브러리)
 4. [협업 규칙](#협업을-위한-규칙)
 5. [폴더 구조](#폴더-구조)
 6. [Best practice 선정을 위한 논의점들](#best-practice-선정을-위한-논의점들)
@@ -13,15 +14,21 @@
 
 | 팀1 | [🐸김보현](https://github.com/BHyeonKim) | [🐶방충림](https://github.com/HWAHAEBANG) | [🐹김수진](https://github.com/notusing11) | [🐨이지은](https://github.com/jieeeun2) |
 | --- | --- | --- | --- | --- |
-| 개인과제 | [김보현의 개인과제](https://github.com/BHyeonKim/wanted-pre-onboarding-12-3-bohyeon-) | [방춤림의 개인과제](https://github.com/HWAHAEBANG/pre-onboarding-12th-3) | [김수진의 개인과제](https://github.com/notusing11/cache-storage) | [이지은의 개인과제](https://github.com/jieeeun2/pre-onboarding-12th-3-1) |
+| 개인과제 | [김보현의 개인과제](https://github.com/BHyeonKim/wanted-pre-onboarding-12-3-bohyeon) | [방충림의 개인과제](https://github.com/HWAHAEBANG/pre-onboarding-12th-3) | [김수진의 개인과제](https://github.com/notusing11/cache-storage) | [이지은의 개인과제](https://github.com/jieeeun2/pre-onboarding-12th-3-1) |
+
+## 실행방법
+
+#### Prerequisite <br/>
+프로젝트 폴더 최상위에 .env 파일을 만들고 아래 내용을 붙여넣기 해주세요 <br/>
+`VITE_API_BASEURL = https://vercel-json-server-snowy.vercel.app`
+<br/>
 
 ```
 npm install && npm run dev
 ```
 
----
 
-## **기술 스택 및 사용한 라이브러리**
+## 기술 스택 및 사용한 라이브러리
 
 - Language
   - Typescript
@@ -42,6 +49,26 @@ npm install && npm run dev
   - Lint Staged
 
 ---
+
+
+## 협업을 위한 규칙
+
+
+- 커밋메세지 컨벤션
+> 컨벤셔널 커밋에 기반하였습니다.
+
+| chore | feat | style | fix | docs | refactor | build | 
+| --- | --- | --- | --- | --- | --- | --- |
+| 코드 또는 로직 변경없이 프로젝트 운영 관련 업데이트 | 새로운 기능 추가 | 들여쓰기, 공백, 포매팅등 | 버그 및 오류 수정 | 문서 작업 | 코드 구조 및 로직 개선 | 빌드 |
+
+- 깃 브랜치 전략
+> git-flow 전략과 github-flow 전략을 조합하였습니다.
+
+| main | develop | feat/{기능이름} | hotfixes |
+| :---: | :---: | :---: | :---: |
+| 메인 브랜치 | 개발브랜치 | 기능 브랜치   | 버그 수정 |
+
+
 
 ## 폴더 구조
 
@@ -94,7 +121,8 @@ export const isolatedKoreanCharacterValidator = (searchKeyword: string) => {
   return isolatedKoreanCharacterRegex.test(searchKeyword);
 };
 ```
-![Alt text](image-2.png)
+![Alt text](/docs/image-1.png)
+
 #### ✅ 경우 2. 입력된 문자가 없는 경우 (모두 지웠을 경우)
 - 모든 입력이 지워진 상태에서도 API요청이 발생합니다. 이 부분을 예외처리 하면 불필요한 요청을 줄이는 효과와 더불어, 빈 문자열을 파라미터로 전송 시 모든 데이터들을 반환해 주는 문제를 보완해 줄 수 있습니다.
 
@@ -108,7 +136,7 @@ export const isolatedKoreanCharacterValidator = (searchKeyword: string) => {
       <br/>
       <br/>
 - 🧪 `시도한 방법 2` :  키보드가 `5번` 눌렸음에도 계속 결과가 없다면, 이후로는 더이상 추천 검색어는 없을 것으로 판단하고 이후 요청을 하지 않기.
-   - 왜 하필 5번인 인가?
+   - 왜 하필 5번인가?
       - 한글로 만들어낼 수 있는 문자 중 가장 많은 키보드 입력을 요하는 경우는 `괅` 같은 형태이고 5번의 키입력을 요구하기 때문입니다.
    - 구체적인 방안 
       - useRef 훅을 사용하여, 결과가 없을 때마다 Ref값을 1씩 증가 시킵니다.
@@ -124,8 +152,8 @@ export const isolatedKoreanCharacterValidator = (searchKeyword: string) => {
 #### ✅ 경우 4. 값이 계속 입력되는 경우 `ex)ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ...`
 - 사용자가 검색창을 이용하다 의도치 않게 키보드가 눌려 값이 계속 입력되는 경우가 발생할 수 있습니다.
 - 이로 인해 API요청이 계속해서 발생할 경우 프로그램의 성능에 큰 무리를 불러올 수 있습니다.
-- 이 경우 `리바운싱`기술을 통해서 문제를 해결할 수 있습니다. 
-- 리바운싱은 일정시간동안 작업을 하지 않으면 동작이 시작되는 방식으로 작동합니다. 즉 사용자가 입력을 끝난 것으로 판단하고 API요청을 진행합니다.
+- 이 경우 `디바운싱`기술을 통해서 문제를 해결할 수 있습니다. 
+- 디바운싱은 일정시간동안 작업을 하지 않으면 동작이 시작되는 방식으로 작동합니다. 즉 사용자가 입력을 끝난 것으로 판단하고 API요청을 진행합니다.
 - 따라서 `ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ...`와 같이 키보드가 눌려도 마지막 한 번만 API요청이 발생하게 됩니다.
 
 
@@ -156,9 +184,9 @@ export const isolatedKoreanCharacterValidator = (searchKeyword: string) => {
 | 3 | 브라우저 Cache Storage에 저장 | 👑 |
 
 #### 선정 근거
-- 전역 상태 관리 툴이나 내부 State에 저장하면 LocalStorage등에 저장하지 않는한 새로고침을하면 캐시 데이터가 날라감.
-- 브라우저의 Cache Storage는 많은 모던 브라우저에서 지원하여 호환성이 뛰어나고 새로고침을 해도 캐시가 날라가지 않음
-- 캐시 데이터의 Expire는 데이터를 Cache Storage에 저장할 때 헤더에 Expire-Date를 같이 넣어주고 캐시를 꺼낼 때 현재 시간과     Expire-Date를 비교하여 데이터가 유효한지 판단.
+- 전역 상태 관리 툴이나 내부 State에 저장하면 LocalStorage등에 저장하지 않는한 새로고침을하면 캐시 데이터가 날라갑니다.
+- 브라우저의 Cache Storage는 많은 모던 브라우저에서 지원하여 호환성이 뛰어나고 새로고침을 해도 캐시가 날라가지 않습니다
+- 캐시 데이터의 Expire는 데이터를 Cache Storage에 저장할 때 헤더에 Expire-Date를 같이 넣어주고 캐시를 꺼낼 때 현재 시간과 Expire-Date를 비교하여 데이터가 유효한지 판단합니다.
 
 #### 구현 방법
 Cache를 저장하고 읽는 함수(setCache와 getCache)를 작성하였습니다.
@@ -185,7 +213,6 @@ export const setCache = async (
   await cache.put(request, response)  // Cache storage에 삽입합니다
 }
 ```
-
 > getCache 함수 
 
 - 캐시값이 없으면 : 캐시된 데이터를 검색하여 검색값이 없으면 undefind를 리턴합니다.<br/>
@@ -256,7 +283,7 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
 
 #### 선정 근거
 - 키보드 수직 탐색 관련한 부분은 오로지 사용자 편의성을 위한 것이기 때문에 검색포털에서 많이 사용하는 방식을 채택하는 것이 좋다고 판단하였습니다.
-- 추천 키워드와 입력한 키워드를 함께 화면에 표출하는 경우, 사용자 입장에서는 어떤게 전송되어 검색되는지 알아보기 쉽지 않음. 그래서 키워드를 입력한 직후에는 Input에 입력한 키워드가 보이지만 키보드로 수직 탐색을 하면 Input에 포커싱된 추천 키워드가 들어가도록하였습니다.
+- 추천 키워드와 입력한 키워드를 함께 화면에 표출하는 경우, 사용자 입장에서는 어떤게 전송되어 검색되는지 알아보기 쉽지 않습니다. 그래서 키워드를 입력한 직후에는 Input에 입력한 키워드가 보이지만 키보드로 수직 탐색을 하면 Input에 포커싱된 추천 키워드가 들어가도록 하였습니다.
 - 포커싱된 추천 키워드는 탐색이 이루어질 때마다 계속해서 업데이트 되어야 하고,
 추천 검색어 목록에 대한 SearchRecommendation컴포넌트와 입력한 키워드 관련한 SearchInput컴포넌트 
 두 컴포넌트 모두에서 포커싱된 키워드 상태값이 필요하기 때문에 전역으로 관리하였습니다.
@@ -264,29 +291,23 @@ function* fetchData(action: ReturnType<typeof changeInput>) {
 <br/>
 <br/>
 
-### 📌 빈문자열일 때 모든 병 목록을 가져오는 것
-
-| No. | 논의된 방안 | 채택 |
-| --- | --- | --- |
-| 1 | saga안에서 changeInput 액션이 디스패치 됐을때 payload에 담긴 문자열의 길이가 0이면 추천리스트를 변경하는 setList액션에 빈 문자열을 넣고 디스패치한 후에 리턴합니다. |  |
-
-#### 선정 근거
-- 1번 방법 사용 시 한 번 받아온 데이터를 재사용하기 때문에 디테일 페이지 접근 속도에       
-  있어서는 우수하나, 디테일 페이지의 데이터가 오래된 데이터일 가능성이 비교적 높은 점을 고려하였습니다.
-- 1번 방법도 결국 새로고침 시 서버로 부터 데이터를 받아와야하므로 2번 방법이 불가피하다고 판단하였습니다.
-
-<br/>
-<br/>
-
 ### 📌 한글 입력시 이벤트 두번 발생 (IME 문제)
+키보드의 Up,Down 키를 사용하여 추천 아이템을 선택하는 과정에서 이벤트가 두 번 발생하는 현상을 발견했습니다. <br/>
+단순 코드 문제라고 생각을 하여 디버깅을 진행하였으나 문제가 되는 지점을 찾지 못했고, 영어 입력시에는 해당 증상이 발생되지 않는 다는 것을 확인했습니다.<br/>
+'한글 입력시 이벤트 두번'과 같은 키워드로 검색한 결과 해당 문제에 대한 힌트를 얻을 수 있었습니다. <br/>
+이러한 문제는 브라우저에서 한글입력을 인식하는 과정에서 IME기능이 작동하는데 있습니다. <br/>
+<br/>
+IME는 사용자가 로마자나 다른 문자를 입력하면, 이를 해당 언어의 문자로 조합하고 변환하기 위해 중간 단계의 이벤트를 발생시킵니다.<br/>
+이러한 중간단계의 이벤트와 최종 변환 단계의 이벤트가 각각 발생하게 되어, 이벤트가 두 번 발생되는 경우를 초래합니다.<br/>
+이를 해결하기 위해서는 중간 단계로 인식되는 composing 단계를 예외처리 해주는 과정이 필요하므로 다음과 같이 최종 이벤트만 발생하도록 코드를 작성함으로써 문제를 해결할 수 있었습니다.
 
-| No. | 논의된 방안 | 채택 |
-| --- | --- | --- |
-| 1 | 한글은 자음 + 모음의 조합으로 하나의 글자가 완성되기 때문에 영어와 달리 |  |
-| 2 | useParam으로 id값 취득 후 해당 값으로 데이터를 새로 요청 | 👑 |
+```typescript
+(e: KeyboardEvent) => {
+    if (e.isComposing) return
+    if (sicks.length === 0) return
 
-#### 선정 근거
-- 1번 방법 사용 시 한 번 받아온 데이터를 재사용하기 때문에 디테일 페이지 접근 속도에       
-  있어서는 우수하나, 디테일 페이지의 데이터가 오래된 데이터일 가능성이 비교적 높은 점을 고려하였습니다.
-- 1번 방법도 결국 새로고침 시 서버로 부터 데이터를 받아와야하므로 2번 방법이 불가피하다고 판단하였습니다.
+    switch (e.key) {
+      case 'ArrowDown':
+        ...
+```
 
