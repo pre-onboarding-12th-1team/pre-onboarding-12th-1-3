@@ -1,3 +1,5 @@
+# 원티드 프리온보딩 12차 1조 3주차 팀 과제
+
 [한국임상정보 사이트](https://clinicaltrialskorea.com/)의 검색영역을 클론한 검색창
 
 [배포링크](https://pre-onboarding-12th-1-3-beta.vercel.app/)
