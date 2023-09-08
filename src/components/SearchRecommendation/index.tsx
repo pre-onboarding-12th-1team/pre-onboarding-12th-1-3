@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind'
 import List from 'components/List'
 import useKeyEvent from 'hooks/useKeyEvent'
-import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { changeInput, selectSick } from 'redux/sickSlice'
+import { selectSick } from 'redux/sickSlice'
 
 import styles from './searchRecommendation.module.scss'
 
@@ -51,10 +51,6 @@ const SearchRecommendation = () => {
     }
   })
 
-  const handleClickList: MouseEventHandler<HTMLButtonElement> = (e) => {
-    dispatch(changeInput(e.currentTarget.value))
-  }
-
   return (
     <div className={cx('recommendationBox')}>
       <p className={cx('recommendationTitle')}>추천 검색어</p>
@@ -75,7 +71,6 @@ const SearchRecommendation = () => {
               }}
               selected={index === itemIndex}
               sick={sick.sickNm}
-              onClick={handleClickList}
             />
           )
         })}
