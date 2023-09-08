@@ -12,6 +12,9 @@ const SearchInput: FC<ComponentProps<'input'>> = ({ ...props }) => {
   const dispatch = useAppDispatch()
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (selectSick) {
+      dispatch(selectSick(''))
+    }
     dispatch(changeInput(e.currentTarget.value))
   }
 
