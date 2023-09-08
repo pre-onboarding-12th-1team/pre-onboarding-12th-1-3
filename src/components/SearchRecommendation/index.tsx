@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import List from 'components/List'
-import useKeyEvent from 'hooks/useKeyEvent'
+import useEvent from 'hooks/useEvent'
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { changeInput, selectSick } from 'redux/sickSlice'
@@ -30,7 +30,7 @@ const SearchRecommendation = () => {
     setItemIndex(START_INDEX)
   }, [input])
 
-  useKeyEvent((e: KeyboardEvent) => {
+  useEvent('keydown', (e: KeyboardEvent) => {
     if (e.isComposing) return
     if (sicks.length === 0) return
 
