@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import List from 'components/List'
 import useEvent from 'hooks/useEvent'
-import { MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { forwardRef, MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { changeInput, selectSick } from 'redux/sickSlice'
 
@@ -11,7 +11,8 @@ const cx = classNames.bind(styles)
 
 const START_INDEX = -1
 
-const SearchRecommendation = () => {
+// eslint-disable-next-line react/display-name
+const SearchRecommendation = forwardRef<HTMLDivElement>((_, ref) => {
   const { sicks, input } = useAppSelector((state) => state.sicks)
   const dispatch = useAppDispatch()
   const [itemIndex, setItemIndex] = useState(START_INDEX)
@@ -56,7 +57,7 @@ const SearchRecommendation = () => {
   }
 
   return (
-    <div className={cx('recommendationBox')}>
+    <div className={cx('recommendationBox')} ref={ref}>
       <p className={cx('recommendationTitle')}>추천 검색어</p>
       <ul className={cx('recommendationUl')}>
         {sicks?.length === 0 && (
@@ -82,6 +83,6 @@ const SearchRecommendation = () => {
       </ul>
     </div>
   )
-}
+})
 
 export default SearchRecommendation
